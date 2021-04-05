@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+      <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="style.css">
+   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+   <div class="container">
+   	 <div class="login">
+   	 	<div class="reg">
+   	 		<h2>REGISTRATION FORM</h2> 
+   	 	</div> 
+   	 	<div class="content">
+            <form id="form">
+               <div class="data">
+   	 			<h2>Username</h2>
+   	 			<input id="username" type="text" name="" placeholder="Enter your username"  autocomplete="off" >
+               <i class="fa fa-check-circle" aria-hidden="true"></i>
+               <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+               <span id="span"></span>
+   	 		</div>
+   	 		<div class="data">
+   	 			<h2>Email</h2>
+   	 			<input id="email" type="email" name="" placeholder="Enter your email_ID" autocomplete="off" >
+               <i class="fa fa-check-circle" aria-hidden="true"></i>
+               <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+               <span></span>
+   	 		</div>
+   	 		<div class="data">
+   	 			<h2>Phone Number</h2>
+   	 			<input id="phone" type="number" name="" placeholder="Enter your Phone Number" autocomplete="off" >
+               <i class="fa fa-check-circle" aria-hidden="true"></i>
+               <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+               <span id="p"></span>
+   	 		</div>
+   	 		<div class="data">
+   	 			<h2>Password</h2>
+   	 			<input id="password" type="password" name="" placeholder="Enter your Password" autocomplete="off" >
+               <i class="fa fa-check-circle" aria-hidden="true"></i>
+               <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+               <span id="pass"></span>
+   	 		</div>
+   	 		<div class="data">
+   	 			<h2>Confirm Password</h2>
+   	 			<input id="confirmpass" type="password" name="" placeholder="Confirm Password" autocomplete="off" >
+               <i class="fa fa-check-circle" aria-hidden="true"></i>
+               <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+               <span id="cpassword"></span>
+   	 		</div>
+            <div class="data">
+               
+               <input type="submit" name="" value="SUBMIT">
+            </div>
+         </form>
+   	 	</div>
+   	 </div>
+   </div>
+
+
+
+
+<script type="text/javascript">
+  const form=document.getElementById('form');
+  const username=document.getElementById('username');
+  const email=document.getElementById('email');
+  const phone=document.getElementById('phone');
+  const password=document.getElementById('password');
+  const confirmpass=document.getElementById('confirmpass');
+
+
+  form.addEventListener('submit',(event)=>{
+    event.preventDefault();
+    validate();
+  })
+
+
+  const validate=()=>{
+    const usernameval=username.value.trim();
+    const emailval=email.value.trim();
+    const phoneval=phone.value.trim();
+    const passwordval=password.value.trim();
+    const confirmpassval=confirmpass.value.trim();
+
+    // validate username
+
+    if(usernameval===""){
+      setErrormsg(username,'Username Cannot Be blank');
+    }
+    else if(usernameval<=2){
+       setErrormsg(username,'Username must be of min 3 char');
+    }
+    else{
+      setSuccessmsg(username);
+    }
+
+    // validate email
+
+    if(emailval===""){
+      setErrormsg(email,'Email cannot be blank');
+    }
+   
+    else{
+      setSuccessmsg(email);
+    }
+
+    if(phoneval===""){
+      setErrormsg(phone,'Phone cannot be blank');
+    }
+    else if(phoneval.length != 10){
+      setErrormsg(phone,'phone number must be of 10 digit');
+    }
+    else{
+      setSuccessmsg(phone);
+    }
+
+    // validate password
+    if(passwordval===""){
+        setErrormsg(password,"Password cannot be blank");
+    }
+    else if(passwordval.length<=5){
+      setErrormsg(password,"password must be of min 6 character");
+    }
+    else{
+      setSuccessmsg(password);
+    }
+     if(confirmpassval===""){
+        setErrormsg(confirmpass,"Confirm Password cannot be blank");
+    }
+    else if(passwordval!=confirmpassval){
+      setErrormsg(confirmpass,"password not matched");
+    }
+    else{
+      setSuccessmsg(confirmpass);
+    }
+
+
+  }
+
+
+
+
+    function setErrormsg(input,errormsg){
+      const data=input.parentElement;
+      const span=data.querySelector('span');
+      data.className="data error";
+      span.innerHTML=errormsg;
+    }
+    function setSuccessmsg(input){
+      const data=input.parentElement;
+      const span=data.querySelector("span");
+      data.className="data success";
+      span.innerHTML="";
+    }
+  
+</script>
+</body>
+</html>
+
